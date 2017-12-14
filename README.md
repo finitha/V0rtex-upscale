@@ -1,4 +1,11 @@
-# v0rtex-S
+
+
+# v0rtex-S Upscale
+
+Fork from : https://github.com/Sticktron/v0rtex-S
+
+- Replaced offsets for iphone 6s 10.3.3
+- Added method to set resolution of iPhone 6/6s/7 Plus
 
 A very basic App for testing Siguza's [v0rtex](https://github.com/Siguza/v0rtex) kernel exploit.
 

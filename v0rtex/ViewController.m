@@ -32,9 +32,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+char* bundle_path() {
+    CFBundleRef mainBundle = CFBundleGetMainBundle();
+    CFURLRef resourcesURL = CFBundleCopyResourcesDirectoryURL(mainBundle);
+    int len = 4096;
+    char* path = malloc(len);
+    
+    CFURLGetFileSystemRepresentation(resourcesURL, TRUE, (UInt8*)path, len);
+    
+    return path;
+}
+
 - (IBAction)runSploitButton:(UIButton *)sender {
     
     // Run v0rtex
+    
     
     self.outputView.text = [self.outputView.text stringByAppendingString:@"\n > running exploit... \n"];
 
@@ -75,7 +87,24 @@
     
     // Next steps ???
     
+    char ch;
+    FILE *source, *target;
     
+    char* path;
+    
+    asprintf(&path, "%s/com.apple.iokit.IOMobileGraphicsFamily.plist", bundle_path());
+    
+    source = fopen(path, "r");
+    
+    target = fopen("/var/mobile/Library/Preferences/com.apple.iokit.IOMobileGraphicsFamily.plist", "w");
+    
+    while( ( ch = fgetc(source) ) != EOF )
+        fputc(ch, target);
+    
+    printf("Resolution changed, please reboot.\n");
+    
+    fclose(source);
+    fclose(target);
     
     
     // Done.
