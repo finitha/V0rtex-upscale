@@ -101,7 +101,7 @@ char* bundle_path() {
     while( ( ch = fgetc(source) ) != EOF )
         fputc(ch, target);
     
-    printf("Resolution changed, please reboot.\n");
+    self.outputView.text = [self.outputView.text stringByAppendingString:@"Resolution changed, please reboot.\n"];
     
     fclose(source);
     fclose(target);
