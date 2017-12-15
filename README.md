@@ -16,6 +16,11 @@ The offsets used are for iPhone 6S on iOS 10.3.3 and must be changed if that is 
 To find your own offsets read [this guide](https://gist.github.com/uroboro/5b2b2b2aa1793132c4e91826ce844957).
 
 
+### Resolution?
+
+Edit com.apple.iokit.IOMobileGraphicsFamily.plist in v0rtex folder if you want to change the resolution
+
+
 ### Requirements
 
 Xcode and a device running iOS 10.
