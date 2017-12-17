@@ -17,8 +17,9 @@
 @end
 
 
-@implementation ViewController
 
+@implementation ViewController
+    @synthesize widthtf,heighttf;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -79,9 +80,15 @@ char* bundle_path() {
     if (f == 0) {
         self.outputView.text = [self.outputView.text stringByAppendingString:@"ERROR: failed to write test file \n"];
         return;
+    } else {
+        self.outputView.text = [self.outputView.text stringByAppendingString:@"Wrote test file! \n"];
+        fclose(f);
+        remove("/var/mobile/test.txt");
+        self.outputView.text = [self.outputView.text stringByAppendingString:@"Deleted test file! \n"];
+        
     }
     
-    self.outputView.text = [self.outputView.text stringByAppendingString:@"wrote test file! \n"];
+    
     self.outputView.text = [self.outputView.text stringByAppendingString:[NSString stringWithFormat:@"/var/mobile/test.txt (%p) \n", f]];
     
     
@@ -94,7 +101,34 @@ char* bundle_path() {
     
     asprintf(&path, "%s/com.apple.iokit.IOMobileGraphicsFamily.plist", bundle_path());
     
-    source = fopen(path, "r");
+    // Setting custom width/height;
+    
+    char *cwidth, *cheight;
+    
+    if (widthtf.text.length==0||heighttf.text.length==0){
+        LOG("NO CUSTOM WIDTH WAS FOUND, USING DEFAULT");
+        source = fopen(path, "r");
+        
+    } else {
+        /*Doesn't work yet
+         TODO:
+         get data from textfields - done;
+         generating plist - done;
+         
+         testing it and commenting return
+         */
+        cwidth =  [widthtf.text UTF8String];
+        cheight = [heighttf.text UTF8String];
+        source = fopen("/var/mobile/Library/Preferences/dummy.plist","w");
+        fprintf(source,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n<key>\ncanvas_height</key>\n<integer>%s</integer>\n<key>canvas_width</key>\n<integer>%s</integer>\n</dict>\n</plist>",cheight,cwidth);
+        fclose(source);
+        NSString *customwidthheight=[NSString stringWithFormat:@"%s",cwidth];
+        self.outputView.text = [self.outputView.text stringByAppendingString:customwidthheight];
+        self.outputView.text = [self.outputView.text stringByAppendingString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n<key>\ncanvas_height</key>\n<integer>%s</integer>\n<key>canvas_width</key>\n<integer>%s</integer>\n</dict>\n</plist>"];
+        /*comment me and risk it */
+        return;
+    }
+    
     
     target = fopen("/var/mobile/Library/Preferences/com.apple.iokit.IOMobileGraphicsFamily.plist", "w");
     
@@ -112,4 +146,9 @@ char* bundle_path() {
     self.outputView.text = [self.outputView.text stringByAppendingString:@"done. \n"];
 }
 
-@end
+    - (IBAction)widthtf:(UITextField *)sender {
+    }
+    
+- (IBAction)heighttf:(UITextField *)sender {
+}
+    @end
