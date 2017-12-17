@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5BF13001FE6BE2E009C9439 /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BF12FF1FE6BE2E009C9439 /* offsets.m */; };
 		D5E9E2711FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5E9E2701FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist */; };
 		EE5169281FDC2A7000805460 /* v0rtex.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5169271FDC2A7000805460 /* v0rtex.m */; };
 		EE5252AE1FDA4F2F00993801 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5252AD1FDA4F2F00993801 /* AppDelegate.m */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D5BF12FF1FE6BE2E009C9439 /* offsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
 		D5E9E2701FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.apple.iokit.IOMobileGraphicsFamily.plist; sourceTree = "<group>"; };
 		EE5169271FDC2A7000805460 /* v0rtex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v0rtex.m; sourceTree = "<group>"; };
 		EE5169291FDC2C9D00805460 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				EE5252AC1FDA4F2F00993801 /* AppDelegate.h */,
 				EE5252AD1FDA4F2F00993801 /* AppDelegate.m */,
 				D5E9E2701FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist */,
+				D5BF12FF1FE6BE2E009C9439 /* offsets.m */,
 				EE5169291FDC2C9D00805460 /* common.h */,
 				EE81AD151FDEF1AB0094418B /* v0rtex.h */,
 				EE5169271FDC2A7000805460 /* v0rtex.m */,
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5BF13001FE6BE2E009C9439 /* offsets.m in Sources */,
 				EE5252B11FDA4F2F00993801 /* ViewController.m in Sources */,
 				EE5252BC1FDA4F2F00993801 /* main.m in Sources */,
 				EE5252AE1FDA4F2F00993801 /* AppDelegate.m in Sources */,
@@ -317,7 +321,7 @@
 				DEVELOPMENT_TEAM = HBY87WEV39;
 				INFOPLIST_FILE = v0rtex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.florianperez.v0rtex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florianperez.v0rtexUpscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -333,7 +337,7 @@
 				DEVELOPMENT_TEAM = HBY87WEV39;
 				INFOPLIST_FILE = v0rtex/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.florianperez.v0rtex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florianperez.v0rtexUpscale;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
