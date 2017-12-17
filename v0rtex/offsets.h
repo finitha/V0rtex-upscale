@@ -1226,6 +1226,7 @@ void load_offsets(void)
      	//10.3.3
     	if(!strcmp(version, "14G60"))
     	{
+            LOG("6S, 10.3.3");
     		OFFSET_ZONE_MAP                             = 0xfffffff007548478;
     		OFFSET_KERNEL_MAP                           = 0xfffffff0075a4050;
     		OFFSET_KERNEL_TASK                          = 0xfffffff0075a4048;
