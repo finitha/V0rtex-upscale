@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "plist.h"
 #include "v0rtex.h"
 
 
@@ -24,10 +24,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
+    //Making some interface
     self.sploitButton.layer.cornerRadius = 6;
     self.outputView.layer.cornerRadius = 6;
 }
+//removes keyboard on uiview click
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    [widthtf resignFirstResponder];
+    [heighttf resignFirstResponder];
 
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -103,42 +112,61 @@ char* bundle_path() {
     
     // Setting custom width/height;
     
-    char *cwidth, *cheight;
+    NSInteger *cwidth, *cheight;
     
     if (widthtf.text.length==0||heighttf.text.length==0){
         LOG("NO CUSTOM WIDTH WAS FOUND, USING DEFAULT");
+        self.outputView.text = [self.outputView.text stringByAppendingString:@"No custom numbers were found. \nUsing default ones."];
         source = fopen(path, "r");
+        target = fopen("/var/mobile/Library/Preferences/com.apple.iokit.IOMobileGraphicsFamily.plist", "w");
         
+        while( ( ch = fgetc(source) ) != EOF )
+            fputc(ch, target);
+        fclose(source);
+        fclose(target);
     } else {
-        /*Doesn't work yet
-         TODO:
-         get data from textfields - done;
-         generating plist - done;
-         
-         testing it and commenting return
-         */
-        cwidth =  [widthtf.text UTF8String];
+        
+        
+        /*cwidth =  [widthtf.text UTF8String];
         cheight = [heighttf.text UTF8String];
-        source = fopen("/var/mobile/Library/Preferences/dummy.plist","w");
+         cwidth and cheight for old */
+        cwidth =  [widthtf.text intValue];
+        cheight = [heighttf.text intValue];
+        
+        /*source = fopen("/var/mobile/Library/Preferences/dummy.plist","w");
         fprintf(source,"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n<key>\ncanvas_height</key>\n<integer>%s</integer>\n<key>canvas_width</key>\n<integer>%s</integer>\n</dict>\n</plist>",cheight,cwidth);
         fclose(source);
-        NSString *customwidthheight=[NSString stringWithFormat:@"%s",cwidth];
-        self.outputView.text = [self.outputView.text stringByAppendingString:customwidthheight];
-        self.outputView.text = [self.outputView.text stringByAppendingString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n<plist version=\"1.0\">\n<dict>\n<key>\ncanvas_height</key>\n<integer>%s</integer>\n<key>canvas_width</key>\n<integer>%s</integer>\n</dict>\n</plist>"];
-        /*comment me and risk it */
-        return;
+        NSString *customwidthheight=[NSString stringWithFormat:@"%s+%s",cwidth,cheight];*/
+        
+        /*generating plist*/
+        
+        NSDictionary *dict =[NSMutableDictionary new];
+        NSNumber *DICTheight = [NSNumber numberWithInt:cheight];
+        NSNumber *DICTwidth = [NSNumber numberWithInt:cwidth];
+        [dict setValue:DICTheight forKey:@"canvas_height"];
+        [dict setValue:DICTwidth forKey:@"canvas_width"];
+        
+        NSString *plistgenerated = [Plist objToPlistAsString:dict];
+        NSData *plistgeneratedasdata = [Plist objToPlistAsData:dict];
+        
+        //old implementation
+        //source = fopen("/var/mobile/Library/Preferences/com.apple.iokit.IOMobileGraphicsFamily.plist","w");
+        //fprintf(source,"%s",plistgenerated);
+        //fclose(source);
+        NSString *pathtofile =@"/var/mobile/Library/Preferences/com.apple.iokit.IOMobileGraphicsFamily.plist";
+        [plistgeneratedasdata writeToFile:pathtofile atomically:(NO)];
+        
+        self.outputView.text = [self.outputView.text stringByAppendingString:plistgenerated];
+        /*UH, BLYA */
+        /*return;*/
     }
     
     
-    target = fopen("/var/mobile/Library/Preferences/com.apple.iokit.IOMobileGraphicsFamily.plist", "w");
     
-    while( ( ch = fgetc(source) ) != EOF )
-        fputc(ch, target);
     
     self.outputView.text = [self.outputView.text stringByAppendingString:@"Resolution changed, please reboot.\n"];
     
-    fclose(source);
-    fclose(target);
+    
     
     
     // Done.
