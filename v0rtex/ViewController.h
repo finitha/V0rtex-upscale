@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@end
+    @property (weak, nonatomic) IBOutlet UITextField *widthtf;
+    @property (weak, nonatomic) IBOutlet UITextField *heighttf;
+    @end
 

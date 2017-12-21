@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		854661B31FEB07ED0096A08D /* plist.m in Sources */ = {isa = PBXBuildFile; fileRef = 854661B21FEB07ED0096A08D /* plist.m */; };
 		85E45A051FE70149008D7431 /* offsets.h in Sources */ = {isa = PBXBuildFile; fileRef = 85E45A041FE70149008D7431 /* offsets.h */; };
 		D5E9E2711FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist in Resources */ = {isa = PBXBuildFile; fileRef = D5E9E2701FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist */; };
 		EE5169281FDC2A7000805460 /* v0rtex.m in Sources */ = {isa = PBXBuildFile; fileRef = EE5169271FDC2A7000805460 /* v0rtex.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		854661B11FEB07B90096A08D /* plist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = plist.h; sourceTree = "<group>"; };
+		854661B21FEB07ED0096A08D /* plist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = plist.m; sourceTree = "<group>"; };
 		85E45A041FE70149008D7431 /* offsets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
 		D5E9E2701FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.apple.iokit.IOMobileGraphicsFamily.plist; sourceTree = "<group>"; };
 		EE5169271FDC2A7000805460 /* v0rtex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = v0rtex.m; sourceTree = "<group>"; };
@@ -75,13 +78,14 @@
 				EE5252AC1FDA4F2F00993801 /* AppDelegate.h */,
 				EE5252AD1FDA4F2F00993801 /* AppDelegate.m */,
 				D5E9E2701FE2FFD90076F2CC /* com.apple.iokit.IOMobileGraphicsFamily.plist */,
-				D5BF12FF1FE6BE2E009C9439 /* offsets.m */,
 				EE5169291FDC2C9D00805460 /* common.h */,
 				EE81AD151FDEF1AB0094418B /* v0rtex.h */,
 				EE5169271FDC2A7000805460 /* v0rtex.m */,
 				EE5252AF1FDA4F2F00993801 /* ViewController.h */,
 				EE5252B01FDA4F2F00993801 /* ViewController.m */,
 				EEAC27D31FDDB0A3003C1801 /* Supporting Files */,
+				854661B11FEB07B90096A08D /* plist.h */,
+				854661B21FEB07ED0096A08D /* plist.m */,
 			);
 			path = v0rtex;
 			sourceTree = "<group>";
@@ -177,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				854661B31FEB07ED0096A08D /* plist.m in Sources */,
 				85E45A051FE70149008D7431 /* offsets.h in Sources */,
 				EE5252B11FDA4F2F00993801 /* ViewController.m in Sources */,
 				EE5252BC1FDA4F2F00993801 /* main.m in Sources */,
